@@ -24,15 +24,22 @@ export class AuthService {
   }
 
   getAuth(user: User) {
-  this.http.post(`${this.url}login`,{username: user.userName, password: user.password}).subscribe((result: any) => {
-      if(result.mensaje === 'El Usuario esta bloqueado' || result.mensaje === 'login correcto') {
+    this.http.post(`${this.url}login`, { username: user.userName, password: user.password }).subscribe((result: any) => {
+      if (result.mensaje === 'El Usuario esta bloqueado' || result.mensaje === 'login correcto') {
         this.loggedIn.next(true);
         this.router.navigate(['/welcome'])
       } else {
         /* deberiamos habilitar solo return cuando el servicio funcione */
-        // return };
-        }
-  }, (error: any) => { console.error(error); this.router.navigate(['/welcome'])});
+        this.loggedIn.next(false);
+        return
+      };
+
+    }, (error: any) => {
+      console.error(error);
+      if (error.status === 404) {
+        this.loggedIn.next(false);
+      }
+    });
   }
 
   logout = () => {

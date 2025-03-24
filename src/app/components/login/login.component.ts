@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/services/http/auth.service';
 export class LoginComponent implements OnInit {
   form!: FormGroup;
   formSubmitAttempt!: boolean;
-  closeAlert = true;
+  closeAlert = false;
   isLoggedIn$!: Observable<boolean>;
   constructor(
     private router: Router,
@@ -38,10 +38,17 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.form.value);
     }
     this.formSubmitAttempt = true;
-    this.closeAlert = false;
     setTimeout(() => {
       this.formSubmitAttempt = false;
       this.closeAlert = true;
+      this.isLoggedIn$.subscribe((logged: any)=> {if(!logged){
+        this.form.reset();
+        this.closeAlert = true;
+        setTimeout(() => {
+          this.closeAlert = false;
+        }, 3500);
+      }})
     }, 4000);
   }
+
 }

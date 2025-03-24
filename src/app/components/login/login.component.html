@@ -31,8 +31,8 @@
                       class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" *ngIf="!formSubmitAttempt">Iniciar Sesión</button>
                       <img *ngIf="formSubmitAttempt" style="width: 150px;"  src="../../../assets/img/loading-color.gif" alt="">
                       <!-- validacion pendiente por falla en servicio (API POST) -->
-                    <!-- <ngb-alert *ngIf="formSubmitAttempt && !closeAlert" type="danger" (closed)="closeAlert">Usuario no encontrado, revise su usuario y
-                      contrasenia</ngb-alert> -->
+                    <ngb-alert *ngIf="closeAlert" type="danger" (closed)="closeAlert">Usuario no encontrado, revise su usuario y
+                      contraseña</ngb-alert>
                   </div>
                 </form>
 
