@@ -77,9 +77,6 @@
               <label>Estado Civil</label>
               <input type="text" formControlName="estadoCivil" class="form-control"
                 [ngClass]="{ 'is-invalid': submitted && f['estadoCivil'].errors }" />
-              <div *ngIf="submitted && f['estadoCivil'].errors" class="invalid-feedback">
-                <div *ngIf="f['estadoCivil'].errors['required']">El campo estado civil es requerido</div>
-              </div>
             </div>
             <div class="form-group">
               <div class="buttons-extra">
