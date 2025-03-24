@@ -1,0 +1,20 @@
+<!-- <div *ngIf="isLoggedIn$ | async as isLoggedIn"> -->
+  <app-navbar></app-navbar>
+  <body class="index-page">
+    <main class="main">
+      <section id="principal" class="principal section dark-background">
+        <img src="assets/img/principal-bg.jpg" alt="" data-aos="fade-in">
+        <div class="container d-flex flex-column align-items-center">
+          <h2 data-aos="fade-up" data-aos-delay="100">Bienvenido a mi portal</h2>
+          <p data-aos="fade-up" data-aos-delay="200">Nos podrías indicar tu nombre</p>
+
+          <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
+            <a (click)="openModal()" class="btn-get-started" style="cursor: pointer;">Escribe tu nombre</a>
+          </div>
+          <br>
+          <h4 data-aos="fade-up" data-aos-delay="100" *ngIf="result">El nombre ingresado es: {{result | cambioLetras}}</h4>
+        </div>
+      </section>
+    </main>
+  </body>
+<!-- </div> -->

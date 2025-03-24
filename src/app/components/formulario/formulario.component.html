@@ -1,0 +1,97 @@
+<app-navbar></app-navbar>
+
+<body class="index-page">
+  <main class="main">
+    <section id="principal" class="principal section dark-background">
+      <img src="assets/img/principal-bg.jpg" alt="" data-aos="fade-in">
+      <div class="container d-flex flex-column align-items-center">
+        <div class="register-form">
+
+          <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label>Nombre(s)</label>
+              <input type="text" formControlName="nombre" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['nombre'].errors }" (focusout)="validarEspacios(f['nombre'].value)"/>
+              <div *ngIf="submitted && f['nombre'].errors" class="invalid-feedback">
+                <div *ngIf="f['nombre'].errors['required']">El campo nombre es requerido</div>
+              </div>
+
+              <div *ngIf="validaEspacioNombre" style="display: block;" class="invalid-feedback">
+                <div >El campo nombre no debe contener espacios al final</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Apellidos</label>
+              <input type="text" formControlName="apellidos" class="form-control" (focusout)="validarEspaciosApellidos(f['apellidos'].value)"
+                [ngClass]="{ 'is-invalid': submitted && f['apellidos'].errors }" />
+              <div *ngIf="submitted && f['apellidos'].errors" class="invalid-feedback">
+                <div *ngIf="f['apellidos'].errors['required']">El campo apellidos es requerido</div>
+              </div>
+
+              <div *ngIf="validaEspacioApellido" style="display: block;" class="invalid-feedback">
+                <div >El campo apellidos no debe contener espacios al final</div>
+              </div>
+            </div>
+
+            <div class="form-group multiple">
+              <label for="fumas">Fumas</label>
+              <select class="form-select" formControlName="fumas" name="fumas" (ngModelChange)="onOptionsSelected()">
+                <option *ngFor="let sta of optionsShared" [ngValue]="sta">{{sta.value}}</option>
+              </select>
+              <div *ngIf="submitted && f['fumas'].value === ''" class="invalid-feedback" style="display: block !important;">
+                <div>Debe seleccionar una opcion</div>
+              </div>
+            </div>
+
+            <div class="form-group multiple">
+              <label for="fumas">Practica Lectura</label>
+              <select class="form-select" formControlName="practicaLectura" name="practicaLectura"
+                (ngModelChange)="onOptionsSelected()">
+                <option *ngFor="let sta of optionsShared" [ngValue]="sta">{{sta.value}}</option>
+              </select>
+              <div *ngIf="submitted && f['practicaLectura'].value === ''" class="invalid-feedback" style="display: block !important;">
+                <div>Debe seleccionar una opcion</div>
+              </div>
+            </div>
+            <!-- form para libros -->
+            <div class="mostrarLibros" *ngIf="filteredLectura === 'Si'">
+              <div class="form-group" formArrayName="libros"
+                *ngFor="let libro of this.fa?.value; let i = index; trackBy:trackByFn">
+                <div [formGroupName]="i">
+                  <input type="text" class="form-control" placeholder="introduce el nombre de un libro"
+                    formControlName="libro">
+                </div>
+
+                  <span (click)="removeGroup(i)"><mat-icon aria-hidden="false" fontIcon="delete_forever"></mat-icon>Remover libro</span>
+
+
+              </div>
+              <div class="form-group">
+                <button type="button" class="btn btn-info float-right" (click)="addGroup()">Agregar otro libro</button>
+              </div>
+            </div>
+            <!-- end form -->
+            <br><br><br>
+            <div class="form-group">
+              <label>Estado Civil</label>
+              <input type="text" formControlName="estadoCivil" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['estadoCivil'].errors }" />
+              <div *ngIf="submitted && f['estadoCivil'].errors" class="invalid-feedback">
+                <div *ngIf="f['estadoCivil'].errors['required']">El campo estado civil es requerido</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="buttons-extra">
+                <img *ngIf="showLoading" style="width: 120px; display: block; height: 35px; border-radius: 5px; position: relative; filter: invert(100%);"  src="../../../assets/img/loading-color.gif" alt="">
+                <button *ngIf="!showLoading" class="btn btn-primary btn-get-started" type="submit" style="border: none;">Enviar</button>
+              </div>
+
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </section>
+  </main>
+</body>

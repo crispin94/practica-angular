@@ -1,0 +1,41 @@
+p {
+  font-family: Lato;
+}
+
+#root {
+  padding: 30px;
+}
+
+.register-form {
+  width: 50%;
+  max-width: 350px;
+  margin: auto;
+}
+
+.multiple {
+  display: inline-grid;
+  width: 100%;
+}
+
+select {
+  border-radius: 4px;
+  height: 35px;
+}
+span{
+  color: red;
+  display: flex;
+  cursor: pointer;
+  font-size: 15px;
+}
+.mat-icon {
+  font-size: 20px;
+}
+
+.img {
+  width: 113px;
+  display: block;
+  height: 40px;
+  border-radius: 5px;
+  position: relative;
+  /* background: red; */
+}

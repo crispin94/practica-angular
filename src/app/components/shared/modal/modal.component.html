@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Introduce tu nombre por favor</h2>
+<form [formGroup]="inputForm">
+    <mat-dialog-content class="mat-typography text-center ml-0 mr-0">
+        <mat-form-field class="mat-form-field-full-width">
+            <input matInput cdkFocusRegionstart placeholder="escribe tu nombre"
+                   formControlName="nombre">
+        </mat-form-field>
+    </mat-dialog-content>
+</form>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button [disabled]="inputForm.get('nombre')?.hasError('required')" class="btn-get-started" mat-button (click)="returnResult()" cdkFocusInitial>Guardar</button>
+</mat-dialog-actions>

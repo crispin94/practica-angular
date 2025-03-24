@@ -1,0 +1,14 @@
+<body class="index-page">
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li *ngFor="let menu of listaMenu" ng-class="{ 'active': isSelected(track)} ">
+            <a [routerLink]="menu.redirect"> {{menu.titulo}} </a>
+          </li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+    </div>
+  </header>
+</body>
