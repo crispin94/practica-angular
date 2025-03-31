@@ -1,14 +1,40 @@
-<body class="index-page">
+<body >
   <header id="header" class="header d-flex align-items-center fixed-top">
-    <div class="container-fluid container-xl position-relative d-flex align-items-center">
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li *ngFor="let menu of listaMenu" ng-class="{ 'active': isSelected(track)} ">
-            <a [routerLink]="menu.redirect"> {{menu.titulo}} </a>
+    <div class="container-fluid container-xl position-relative d-flex justify-content-between align-items-center">
+
+
+      <!-- Botón del menú móvil -->
+      <button
+        class="navbar-toggler d-xl-none"
+        type="button"
+        (click)="toggleMenu()"
+        aria-controls="navmenu"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i style="color: aliceblue !important;" class="bi bi-list"></i>
+      </button>
+
+      <!-- Menú de navegación -->
+      <nav
+        id="navmenu"
+        class="navmenu"
+        [ngClass]="{ 'd-block': isMenuOpen, 'd-none d-xl-flex': !isMenuOpen }"
+      >
+        <ul class="navbar-nav ml-auto">
+          <li
+            *ngFor="let menu of listaMenu"
+            [ngClass]="{ 'active': isSelected(menu.redirect) }"
+            class="nav-item"
+          >
+            <a class="nav-link" [routerLink]="menu.redirect" (click)="closeMenu()">
+              {{ menu.titulo }}
+            </a>
           </li>
         </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
     </div>
   </header>
+
+
 </body>

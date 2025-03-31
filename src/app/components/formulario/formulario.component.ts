@@ -26,7 +26,7 @@ export class FormularioComponent implements OnInit {
       libros: this.fb.array([
         this.initLibros()
       ]),
-      estadoCivil: ['', Validators.required]
+      estadoCivil: ['']
     });
     this.fa.valueChanges.subscribe(value => {
       console.log('name has changed:', value)

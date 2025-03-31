@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent  {
+export class NavbarComponent {
   listaMenu = [
     {
       titulo: 'Inicio',
@@ -26,6 +27,21 @@ export class NavbarComponent  {
     {
       titulo: 'Cerrar sesión',
       redirect: '/'
-    }];
+    }
+  ];
 
+  isMenuOpen = false;
+
+  constructor(private router: Router) {}
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu() {
+    this.isMenuOpen = false;
+  }
+  isSelected(url: string): boolean {
+    return this.router.url === url;
+  }
 }
